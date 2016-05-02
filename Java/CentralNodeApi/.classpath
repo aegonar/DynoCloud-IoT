@@ -13,6 +13,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/agonar/DynoCloud/Git/DynoCloud/Java/External Jars/mqtt-client-java1.4-uber-1.7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
