@@ -1,0 +1,52 @@
+#!/bin/bash
+
+for i in `seq 1 10000`;
+do
+
+temp=$(echo $RANDOM % 100 + 1| bc)
+hum=$(echo $RANDOM % 100 + 1 | bc)
+
+load_IR=$(echo $RANDOM % 100 + 1 | bc)
+load_IC=$(echo $RANDOM % 100 + 1 | bc)
+
+state_UV=0
+state_HUM=1
+
+#timedate=$(date +"%Y-%m-%d %H:%M:%S")
+
+timedate=$(date +"%Y-%d-%m %H:%M:%S")
+
+#export payload="{\"enclosureNodeID\":\"1\",\"temperature\":\"$temp\",\"humidity\":\"$hum\",\"Load_IR\":\"$load_IR\",\"Load_IC\":\"$load_IC\",\"State_UV\":\"$state_UV\",\"State_HUM\":\"$state_HUM\"}"
+#export payload="{\"CLIENTID\":\"1\",\"TEMP\":\"$temp\",\"RH\":\"$hum\",\"IR_PW\":\"$load_IR\",\"IC_PW\":\"$load_IC\",\"UV_STATUS\":\"1\",\"HUMI_STATUS\":\"0\",\"DateTime\":\"04-13-16 22:11:26\"}"
+
+
+export payload="{\"CLIENTID\":\"2\",\"TEMP\":\"$temp\",\"RH\":\"$hum\",\"dateTime\":\"$timedate\"}"
+#export payload="{\"CLIENTID\":\"2\",\"TEMP\":\"$temp\",\"RH\":\"$hum\",\"IR_PW\":\"$load_IR\",\"IC_PW\":\"$load_IC\",\"UV_STATUS\":\"1\",\"HUMI_STATUS\":\"0\",\"dateTime\":\"04-13-16 22:11:26\", \"centralNodeID\":\"1\", \"userID\":\"2\"}"
+echo $payload
+
+
+#curl -H "Content-Type: application/json" -d $payload -X POST http://localhost/api/telemetry 
+
+
+         #curl -H "Content-Type: application/json" -d "$payload" -X POST http://localhost/node_api/publish 
+         mosquitto_pub -h localhost -t /DynoCloud/Telemetry -m "$payload"
+        # echo
+         sleep 3
+ done  
+
+
+
+
+
+# export DATA='{"username": "agonar","password": 1234}'
+
+# auth=$(curl -s -X POST \
+#  -H "Content-Type: application/json" \
+#  -d "${DATA}" \
+#  http://localhost/server_api/login)
+
+ # curl -s -X POST \
+ # -H "Content-Type: application/json" \
+ #  -H "Authorization: Bearer $auth" \
+ # -d "${payload}" \
+ # -i http://localhost/server_api/publish
