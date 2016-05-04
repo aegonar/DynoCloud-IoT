@@ -386,7 +386,7 @@ public class AlertResource {
 			int  rs_query_updateSettings = prep_sql.executeUpdate();
 			
 			if (rs_query_updateSettings == 0){
-				return Response.status(Response.Status.CONFLICT).entity("Error updating settings").build();			
+				return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error updating settings").build();			
 			}               
 	        
 		}catch(Exception e){
@@ -395,7 +395,7 @@ public class AlertResource {
 			
 			link.Close_link();
 
-			return Response.status(Response.Status.CONFLICT).entity("Error updating settings").build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error updating settings").build();
 				
 		}
 

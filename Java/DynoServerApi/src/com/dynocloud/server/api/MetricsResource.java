@@ -120,7 +120,7 @@ public class MetricsResource {
 
 	link.Close_link();
 	
-	System.out.println("---Total: " + masterIndex);
+	System.out.println("---Mapped: " + masterIndex);
 	System.out.println("---Reduced: " + list.size());
 	
 	ObjectMapper mapper = new ObjectMapper();
